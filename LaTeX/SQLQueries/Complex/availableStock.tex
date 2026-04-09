@@ -1,0 +1,15 @@
+\begin{lstlisting}[caption={Q9: Stock availability check for cart items}]
+SELECT  b.title,
+        ci.quantity             AS qty_wanted,
+        NVL(SUM(i.quantity),0)  AS total_available,
+        CASE
+            WHEN NVL(SUM(i.quantity),0) >= ci.quantity THEN 'IN STOCK'
+            WHEN NVL(SUM(i.quantity),0) > 0            THEN 'PARTIAL'
+            ELSE                                            'OUT OF STOCK'
+        END AS availability
+FROM    CART_ITEMS ci
+JOIN    BOOK       b  ON b.isbn = ci.isbn
+LEFT JOIN INVENTORY i ON i.isbn = ci.isbn
+WHERE   ci.cart_id = 1
+GROUP   BY b.title, ci.quantity;
+\end{lstlisting}

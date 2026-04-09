@@ -1,0 +1,44 @@
+\begin{lstlisting}[caption={BOOK and INVENTORY table definitions}]
+CREATE TABLE BOOK (
+    isbn           VARCHAR2(20)  NOT NULL,
+    title          VARCHAR2(255) NOT NULL,
+    year           NUMBER(4)     NOT NULL,
+    price          NUMBER(8,2)   NOT NULL,
+    genre          VARCHAR2(50),
+    author_name    VARCHAR2(100) NOT NULL,
+    publisher_name VARCHAR2(100) NOT NULL,
+    CONSTRAINT pk_book        PRIMARY KEY (isbn),
+    CONSTRAINT fk_book_author FOREIGN KEY (author_name)
+                              REFERENCES AUTHOR(name),
+    CONSTRAINT fk_book_pub    FOREIGN KEY (publisher_name)
+                              REFERENCES PUBLISHER(name),
+    CONSTRAINT chk_book_price CHECK (price > 0),
+    CONSTRAINT chk_book_year  CHECK (year BETWEEN 1000 AND 2100)
+);
+
+CREATE TABLE INVENTORY (
+    warehouse_code VARCHAR2(20) NOT NULL,
+    isbn           VARCHAR2(20) NOT NULL,
+    quantity       NUMBER(6)    DEFAULT 0 NOT NULL,
+    CONSTRAINT pk_inventory     PRIMARY KEY (warehouse_code, isbn),
+    CONSTRAINT fk_inv_warehouse FOREIGN KEY (warehouse_code)
+                                REFERENCES WAREHOUSE(code),
+    CONSTRAINT fk_inv_book      FOREIGN KEY (isbn)
+                                REFERENCES BOOK(isbn),
+    CONSTRAINT chk_inv_qty      CHECK (quantity >= 0)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[caption={CART and ORDERS with status constraints}]
+CREATE TABLE CART (
+    cart_id    NUMBER       DEFAULT SEQ_CART.NEXTVAL NOT NULL,
+    cust_id    NUMBER       NOT NULL,
+    status     VARCHAR2(20) DEFAULT 'ACTIVE' NOT NULL,
+    created_at DATE         DEFAULT SYSDATE,
+    CONSTRAINT pk_cart       PRIMARY KEY (cart_id),
+    CONSTRAINT fk_cart_cust  FOREIGN KEY (cust_id)
+                             REFERENCES CUSTOMER(cust_id),
+    CONSTRAINT chk_cart_status
+        CHECK (status IN ('ACTIVE','CHECKED_OUT','ABANDONED'))
+);
+\end{lstlisting}

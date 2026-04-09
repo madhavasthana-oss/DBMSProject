@@ -1,0 +1,10 @@
+\begin{lstlisting}[caption={trg\_decrement\_stock trigger}]
+CREATE OR REPLACE TRIGGER trg_decrement_stock
+AFTER INSERT ON ORDER_ITEMS
+FOR EACH ROW
+BEGIN
+    UPDATE INVENTORY
+    SET    quantity = quantity - :NEW.quantity
+    WHERE  isbn = :NEW.isbn;
+END;
+\end{lstlisting}

@@ -1,0 +1,19 @@
+\begin{lstlisting}[caption={add\_to\_cart: add a book to a customer's active cart}]
+CREATE OR REPLACE PROCEDURE add_to_cart(
+    p_cust_id  IN NUMBER,
+    p_isbn     IN VARCHAR2,
+    p_quantity IN NUMBER DEFAULT 1
+) AS
+    v_cart_id NUMBER;
+    v_stock   NUMBER;
+BEGIN
+    v_stock := get_total_stock(p_isbn);
+    IF v_stock < p_quantity THEN
+        RAISE_APPLICATION_ERROR(-20010,
+            'Insufficient stock. Available: ' || v_stock);
+    END IF;
+    -- get or create active cart, then upsert cart item
+    ...
+    COMMIT;
+END add_to_cart;
+\end{lstlisting}

@@ -1,0 +1,390 @@
+\documentclass[12pt, a4paper]{article}
+\input{preamble.tex}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+
+% ════════════════════════════════════════════════════════════
+\section{Abstract}
+% ════════════════════════════════════════════════════════════
+
+This project presents the design and implementation of a web-based Shopping Cart
+Management System intended to demonstrate practical applications of Database Management
+System (DBMS) concepts. The system enables users to browse items, add or remove products
+from a virtual shopping cart, update quantities, and perform a consolidated checkout
+operation. The primary focus is on database modelling, integrity enforcement, and
+transaction management rather than building a full-scale commercial e-commerce platform.
+
+The design extends the bookstore Entity--Relationship (E-R) schema of Exercise~6.21
+(Silberschatz, \textit{Database System Concepts}, 7th ed.) to incorporate additional
+entities such as \textit{Cart}, \textit{Order}, \textit{Inventory}, and \textit{Payment},
+ensuring proper relationships, normalisation, and constraint enforcement. The relational
+schema is implemented using Oracle 21c XE with primary keys, foreign keys, check
+constraints, sequences, triggers, and stored procedures. A Java JDBC layer demonstrates
+database connectivity and calls to PL/SQL procedures for cart operations, stock
+verification, and atomic order placement.
+
+\section{Problem Statement}
+\subsection{Background}
+Design and implement a shopping cart system that lets shoppers collect items into a
+shopping cart and purchase them together. The system is built by extending the
+bookstore E-R schema of \textbf{Exercise 6.21, Chapter 6} (Korth, 6th Edition).
+Stock availability must be verified at checkout, and out-of-stock situations must be
+handled gracefully.
+\input{problem_statement.tex}
+\section{E-R Diagram and Schema Extension}
+
+\subsection{Original E-R Schema (Exercise 6.21)}
+
+The original bookstore schema from Silberschatz et al.\ contains the following
+entities and relationships:
+
+\begin{itemize}
+    \item \textbf{Entities}: \textit{author} (name, address, URL),
+          \textit{book} (ISBN, title, year, price),
+          \textit{publisher} (name, address, phone, URL),
+          \textit{customer} (email, name, address, phone),
+          \textit{shopping\_basket} (basket\_id),
+          \textit{warehouse} (code, address, phone).
+    \item \textbf{Relationships}: \textit{written\_by} (book--author),
+          \textit{published\_by} (book--publisher),
+          \textit{basket\_of} (basket--customer),
+          \textit{contains} (basket--book, with attribute \textit{number}),
+          \textit{stocks} (warehouse--book, with attribute \textit{number}).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{image.png}
+    \caption{Original E-R schema from Exercise 6.21 (Silberschatz et al.)}
+    \label{fig:original-er}
+\end{figure}
+
+\subsection{Extensions Made}
+
+Table~\ref{tab:extensions} summarises the extensions applied to the original schema.
+
+\begin{table}[H]
+\centering
+\caption{Schema extensions beyond Exercise 6.21}
+\label{tab:extensions}
+\begin{tabular}{lll}
+\toprule
+\textbf{Original} & \textbf{Change} & \textbf{Reason} \\
+\midrule
+\textit{book}            & Added \textit{genre}, \textit{description} & Richer browsing \\
+\textit{customer}        & Added \textit{password\_hash}, \textit{created\_at} & Auth + analytics \\
+\textit{shopping\_basket} & Renamed to \textit{cart}; added \textit{status}, \textit{created\_at} & Lifecycle tracking \\
+\textit{contains}        & Became \textit{CART\_ITEMS} table & Proper relation \\
+\textit{stocks}          & Became \textit{INVENTORY} table & Warehouse tracking \\
+---                      & New: \textit{ORDERS}            & Order management \\
+---                      & New: \textit{ORDER\_ITEMS}      & Per-order snapshot \\
+---                      & New: \textit{PAYMENT}           & Payment tracking \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Relational Schema and Normalisation}
+
+\subsection{Relational Tables}
+\input{SchemaAndNormalization/tables.tex}
+
+\subsection{Normalisation}
+
+All tables satisfy \textbf{Third Normal Form (3NF)} / \textbf{BCNF}:
+
+\begin{itemize}
+    \item \textbf{1NF}: All attributes are atomic. No multi-valued columns.
+    \item \textbf{2NF}: No partial dependencies exist. In \texttt{ORDER\_ITEMS}
+          the non-key attribute \texttt{price\_at\_order} depends on the full
+          composite key \{order\_id, isbn\}, not a subset.
+    \item \textbf{3NF}: No transitive dependencies. \texttt{BOOK} stores
+          \texttt{author\_name} and \texttt{publisher\_name} as FKs only —
+          author details live entirely in \texttt{AUTHOR}.
+\end{itemize}
+
+A deliberate design choice: \texttt{ORDER\_ITEMS.price\_at\_order} snapshots the
+book price at time of purchase. Although \texttt{BOOK.price} exists, this is not a
+transitive dependency because the historical price is a distinct fact from the
+current price.
+
+\section{DDL — Table Definitions and Constraints}
+
+The following listings show representative DDL. Full code is in
+\texttt{schema\_setup.sql}.
+
+\input{DDL/listings.tex}
+
+\section{SQL Queries}
+
+\subsection{Basic Queries}
+
+\input{SQLQueries/Basic/allBooksWIthAuthor.tex}
+
+\input{SQLQueries/Basic/activeCarts.tex}
+
+\input{SQLQueries/Basic/totalStock.tex}
+
+\subsection{Complex Queries}
+
+\input{SQLQueries/Complex/availableStock.tex}
+
+\input{SQLQueries/Complex/cartSummary.tex}
+
+\input{SQLQueries/Complex/revenuePerPublisher.tex}
+
+\section{PL/SQL Procedures, Functions, and Triggers}
+
+\subsection{Functions}
+
+\begin{lstlisting}[caption={get\_total\_stock: total stock across all warehouses}]
+CREATE OR REPLACE FUNCTION get_total_stock(p_isbn IN VARCHAR2)
+RETURN NUMBER IS
+    v_total NUMBER := 0;
+BEGIN
+    SELECT NVL(SUM(quantity), 0) INTO v_total
+    FROM   INVENTORY WHERE isbn = p_isbn;
+    RETURN v_total;
+END get_total_stock;
+\end{lstlisting}
+
+\subsection{Procedures}
+
+\input{PLSQL/procedures/addToCart.tex}
+
+\input{PLSQL/procedures/checkout.tex}
+
+\subsection{Triggers}
+
+\input{PLSQL/triggers/summary.tex}
+
+\input{PLSQL/triggers/triggerDecrement.tex}
+
+% ════════════════════════════════════════════════════════════
+\section{Java DB Connectivity}
+% ════════════════════════════════════════════════════════════
+
+The file \texttt{ShoppingCartDB.java} demonstrates Oracle JDBC connectivity
+using the Type-4 thin driver (\texttt{ojdbc11.jar}).
+
+\begin{lstlisting}[language=Java, caption={JDBC connection setup}]
+private static final String URL =
+    "jdbc:oracle:thin:@localhost:1521/XEPDB1";
+
+public static Connection getConnection() throws SQLException {
+    return DriverManager.getConnection(URL, USER, PASSWORD);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java, caption={Calling the checkout PL/SQL procedure}]
+String sql = "BEGIN checkout(?, ?, ?); END;";
+CallableStatement cs = con.prepareCall(sql);
+cs.setInt(1, custId);
+cs.setString(2, paymentMethod);
+cs.registerOutParameter(3, Types.NUMERIC); // OUT p_order_id
+cs.execute();
+int orderId = cs.getInt(3);
+\end{lstlisting}
+
+Key JDBC patterns demonstrated:
+\begin{itemize}
+    \item \texttt{Statement} for simple SELECT queries.
+    \item \texttt{PreparedStatement} for parameterised queries (prevents SQL injection).
+    \item \texttt{CallableStatement} for PL/SQL procedure and function calls.
+    \item Manual \texttt{con.setAutoCommit(false)} with explicit \texttt{COMMIT}/\texttt{ROLLBACK}.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════
+\section{Transaction Management}
+% ════════════════════════════════════════════════════════════
+
+The checkout operation is the most critical transaction in the system. It follows an
+all-or-nothing strategy:
+
+\begin{enumerate}
+    \item Validate that the cart contains at least one item.
+    \item For every cart item, verify that total warehouse stock $\geq$ quantity
+          requested. If any item fails, raise an error before any \texttt{INSERT}.
+    \item Insert one row into \texttt{ORDERS}.
+    \item Insert rows into \texttt{ORDER\_ITEMS}; triggers fire automatically to
+          decrement \texttt{INVENTORY} and mark the cart \texttt{CHECKED\_OUT}.
+    \item Insert one row into \texttt{PAYMENT}.
+    \item \texttt{COMMIT} — all five steps succeed atomically.
+    \item \texttt{ROLLBACK} in the \texttt{WHEN OTHERS} exception handler if any step fails.
+\end{enumerate}
+
+This guarantees that partial orders (e.g., payment recorded but inventory not
+decremented) can never occur.
+
+% ════════════════════════════════════════════════════════════
+\section{Sample Data}
+% ════════════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering
+\caption{Sample books in the system}
+\begin{tabular}{llrr}
+\toprule
+\textbf{ISBN} & \textbf{Title} & \textbf{Year} & \textbf{Price (Rs.)} \\
+\midrule
+978-0-07-352332-3 & Database System Concepts & 2019 & 899 \\
+978-0-13-468599-1 & Operating System Concepts & 2018 & 799 \\
+978-0-13-235088-4 & Clean Code & 2008 & 649 \\
+978-0-13-212227-1 & Computer Networks & 2021 & 749 \\
+978-0-06-231609-7 & Sapiens & 2015 & 499 \\
+978-0-06-244558-9 & Homo Deus & 2017 & 549 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Warehouses and total inventory}
+\begin{tabular}{lll}
+\toprule
+\textbf{Code} & \textbf{Location} & \textbf{Books Stocked} \\
+\midrule
+WH-MUM & Andheri East, Mumbai     & 3 titles \\
+WH-BLR & Whitefield, Bengaluru    & 3 titles \\
+WH-DEL & Okhla Phase II, New Delhi & 3 titles \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ════════════════════════════════════════════════════════════
+\section{UI Design}
+% ════════════════════════════════════════════════════════════
+
+The application is built using \textbf{JavaFX} with a dark-themed dashboard
+interface. It connects to Oracle 21c XE via JDBC and exposes all six core
+operations as tabs. A persistent console panel at the bottom logs every DB
+operation in real time, and a status indicator in the header confirms the
+active Oracle connection (\texttt{● XEPDB1}).
+
+\subsection{Books Listing}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{ss_books.png}
+    \caption{Books tab — all 6 books fetched via \texttt{SELECT ... JOIN AUTHOR}.
+             Console shows \texttt{Loaded 6 books.}}
+    \label{fig:ui-books}
+\end{figure}
+
+\subsection{View Cart}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{ss_viewCart.png}
+    \caption{Cart tab — active cart for Customer \#1 showing \textit{Homo Deus}
+             (qty 2, line total ₹1098.00). Uses \texttt{PreparedStatement} with
+             customer ID as parameter.}
+    \label{fig:ui-cart}
+\end{figure}
+
+\subsection{Add to Cart}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{ss_addToCart.png}
+    \caption{Add to Cart tab — Customer \#1 adds 2 copies of ISBN
+             \texttt{978-0-06-244558-9}. Calls PL/SQL procedure
+             \texttt{add\_to\_cart(cust\_id, isbn, quantity)} via
+             \texttt{CallableStatement}.}
+    \label{fig:ui-add}
+\end{figure}
+
+\subsection{Checkout}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{ss_transaction.png}
+    \caption{Checkout tab — Customer \#1 checks out via \texttt{CREDIT\_CARD}.
+             Order ID 3 returned from the \texttt{checkout} PL/SQL procedure
+             OUT parameter. Console confirms \texttt{Checkout successful.}}
+    \label{fig:ui-checkout}
+\end{figure}
+
+\subsection{Check Stock}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{ss_stock.png}
+    \caption{Stock tab — calls PL/SQL function \texttt{get\_total\_stock(isbn)}
+             and displays result. ISBN \texttt{978-0-06-244558-9} shows 32 units
+             remaining after the checkout above decremented inventory via trigger.}
+    \label{fig:ui-stock}
+\end{figure}
+
+\subsection{Transaction Demo}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{ss_transactionDemo.png}
+    \caption{Transaction Demo tab — inserts 99 units into cart, simulates a
+             payment failure, then executes \texttt{ROLLBACK}. Demonstrates
+             \texttt{con.setAutoCommit(false)} with explicit rollback on
+             exception. Data integrity is preserved.}
+    \label{fig:ui-transaction}
+\end{figure}
+
+% ════════════════════════════════════════════════════════════
+\section{Testing Scenarios}
+% ════════════════════════════════════════════════════════════
+
+\begin{table}[H]
+\centering
+\caption{Test cases and expected outcomes}
+\begin{tabular}{lll}
+\toprule
+\textbf{Test Case} & \textbf{Input} & \textbf{Expected Result} \\
+\midrule
+Add to cart (valid)          & ISBN + qty in stock    & Item added, cart updated \\
+Add to cart (out of stock)   & qty $>$ total stock    & ORA-20010 raised \\
+Checkout (valid)             & Active cart, items available & Order placed, stock decremented \\
+Checkout (empty cart)        & Cart with 0 items      & ORA-20030 raised \\
+Checkout (partial stock)     & One item insufficient  & ORA-20031 raised, rollback \\
+Modify checked-out cart      & DML on cart\_id=2      & ORA-20060 raised (trigger) \\
+Negative stock update        & SET quantity = -1      & ORA-20050 raised (trigger) \\
+Duplicate email registration & Same email twice       & ORA-00001 (unique constraint) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ════════════════════════════════════════════════════════════
+\section{Conclusion}
+% ════════════════════════════════════════════════════════════
+
+This project successfully demonstrates the design and implementation of a Shopping
+Cart Management System grounded in rigorous DBMS principles. Starting from the
+Exercise 6.21 bookstore E-R schema, the system was extended to support a complete
+purchase lifecycle — from cart creation through checkout to payment recording.
+
+Key outcomes achieved:
+\begin{itemize}
+    \item A fully normalised (3NF) relational schema with 11 tables.
+    \item 15 SQL queries spanning basic retrieval to complex multi-table aggregation.
+    \item 4 PL/SQL stored procedures and 2 functions encapsulating core business logic.
+    \item 5 triggers enforcing referential and business-rule integrity automatically.
+    \item An atomic, rollback-safe checkout transaction preventing partial order anomalies.
+    \item A Java JDBC layer demonstrating \texttt{PreparedStatement},
+          \texttt{CallableStatement}, and manual transaction control.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════
+\section*{References}
+% ════════════════════════════════════════════════════════════
+\addcontentsline{toc}{section}{References}
+
+\begin{enumerate}
+    \item Silberschatz, A., Korth, H.F., Sudarshan, S. (2019). \textit{Database System
+          Concepts}, 7th edition. McGraw-Hill.
+    \item Oracle Corporation. (2021). \textit{Oracle Database 21c SQL Language Reference}.
+          \url{https://docs.oracle.com/en/database/oracle/oracle-database/21/}
+    \item Oracle Corporation. (2021). \textit{Oracle Database PL/SQL Language Reference}.
+    \item Oracle Corporation. (2021). \textit{JDBC Developer's Guide}.
+\end{enumerate}
+
+\end{document}

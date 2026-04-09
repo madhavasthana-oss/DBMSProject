@@ -1,0 +1,32 @@
+\subsection{Data Requirements}
+The system must maintain the following data:
+\begin{itemize}
+    \item \textbf{Books}: identified by ISBN; storing title, publication year, price,
+          genre, author, and publisher.
+    \item \textbf{Authors}: name, address, URL.
+    \item \textbf{Publishers}: name, address, phone, URL.
+    \item \textbf{Customers}: unique email, name, address, phone, hashed password,
+          registration timestamp.
+    \item \textbf{Warehouses}: code, address, phone.
+    \item \textbf{Inventory}: per-warehouse stock count for each book.
+    \item \textbf{Cart}: links a customer to a set of items; tracks status
+          (ACTIVE, CHECKED\_OUT, ABANDONED).
+    \item \textbf{Cart Items}: book + quantity within a cart.
+    \item \textbf{Orders}: placed from a cart; captures total amount and order status.
+    \item \textbf{Order Items}: snapshot of each book's price and quantity at order time.
+    \item \textbf{Payments}: method, amount, and status for each order.
+\end{itemize}
+
+\subsection{Functional Requirements}
+\begin{enumerate}
+    \item Browse all available books with author/publisher details.
+    \item Add, update quantity, and remove books from an active cart.
+    \item Check total stock availability before and during checkout.
+    \item Atomically place an order from a cart using a transaction; rollback on failure.
+    \item Automatically decrement inventory on order placement (trigger).
+    \item Mark a cart as CHECKED\_OUT when an order is placed (trigger).
+    \item Prevent negative inventory at all times (trigger + constraint).
+    \item Record payment alongside each order.
+    \item Support complex reporting: revenue by publisher, demand forecasting,
+          order receipts, and customer analytics.
+\end{enumerate}

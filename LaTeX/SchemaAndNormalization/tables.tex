@@ -1,0 +1,14 @@
+\begin{align*}
+&\textbf{AUTHOR}(\underline{name},\ address,\ url) \\
+&\textbf{PUBLISHER}(\underline{name},\ address,\ phone,\ url) \\
+&\textbf{BOOK}(\underline{isbn},\ title,\ year,\ price,\ genre,\ description,\ \underline{author\_name},\ \underline{publisher\_name}) \\
+&\textbf{CUSTOMER}(\underline{cust\_id},\ email,\ name,\ address,\ phone,\ password\_hash,\ created\_at) \\
+&\textbf{WAREHOUSE}(\underline{code},\ address,\ phone) \\
+&\textbf{INVENTORY}(\underline{warehouse\_code},\ \underline{isbn},\ quantity) \\
+&\textbf{CART}(\underline{cart\_id},\ \underline{cust\_id},\ status,\ created\_at,\ updated\_at) \\
+&\textbf{CART\_ITEMS}(\underline{cart\_id},\ \underline{isbn},\ quantity) \\
+&\textbf{ORDERS}(\underline{order\_id},\ \underline{cust\_id},\ \underline{cart\_id},\ order\_date,\ total\_amount,\ status) \\
+&\textbf{ORDER\_ITEMS}(\underline{order\_id},\ \underline{isbn},\ quantity,\ price\_at\_order) \\
+&\textbf{PAYMENT}(\underline{payment\_id},\ \underline{order\_id},\ amount,\ method,\ payment\_date,\ status)
+\end{align*}
+(Underlined attributes are primary keys; foreign key references follow from context.)

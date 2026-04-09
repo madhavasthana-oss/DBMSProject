@@ -1,0 +1,8 @@
+\begin{lstlisting}[caption={Q1: All books with author and publisher}]
+SELECT b.isbn, b.title, b.year, b.price,
+       a.name AS author, p.name AS publisher
+FROM   BOOK b
+JOIN   AUTHOR    a ON a.name = b.author_name
+JOIN   PUBLISHER p ON p.name = b.publisher_name
+ORDER  BY b.title;
+\end{lstlisting}

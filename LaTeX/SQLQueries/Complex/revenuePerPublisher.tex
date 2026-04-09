@@ -1,0 +1,13 @@
+\begin{lstlisting}[caption={Q11: Revenue per publisher (complex aggregation)}]
+SELECT  p.name AS publisher,
+        COUNT(DISTINCT o.order_id)           AS total_orders,
+        SUM(oi.quantity)                     AS books_sold,
+        SUM(oi.price_at_order * oi.quantity) AS revenue
+FROM    ORDER_ITEMS oi
+JOIN    BOOK        b  ON b.isbn     = oi.isbn
+JOIN    PUBLISHER   p  ON p.name     = b.publisher_name
+JOIN    ORDERS      o  ON o.order_id = oi.order_id
+WHERE   o.status IN ('PLACED','SHIPPED','DELIVERED')
+GROUP   BY p.name
+ORDER   BY revenue DESC;
+\end{lstlisting}

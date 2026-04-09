@@ -1,0 +1,8 @@
+\begin{lstlisting}[caption={Q2: Active cart contents for a customer}]
+SELECT b.title, b.price, ci.quantity,
+       (b.price * ci.quantity) AS line_total
+FROM   CART c
+JOIN   CART_ITEMS ci ON ci.cart_id = c.cart_id
+JOIN   BOOK b        ON b.isbn     = ci.isbn
+WHERE  c.cust_id = 1 AND c.status = 'ACTIVE';
+\end{lstlisting}

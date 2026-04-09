@@ -1,0 +1,13 @@
+\begin{lstlisting}[caption={Q8: Active cart summary with totals}]
+SELECT  cu.name AS customer, c.cart_id,
+        COUNT(ci.isbn)             AS distinct_titles,
+        SUM(ci.quantity)           AS total_books,
+        SUM(b.price * ci.quantity) AS cart_value
+FROM    CART c
+JOIN    CUSTOMER   cu ON cu.cust_id = c.cust_id
+JOIN    CART_ITEMS ci ON ci.cart_id = c.cart_id
+JOIN    BOOK       b  ON b.isbn     = ci.isbn
+WHERE   c.status = 'ACTIVE'
+GROUP   BY cu.name, c.cart_id
+ORDER   BY cart_value DESC;
+\end{lstlisting}

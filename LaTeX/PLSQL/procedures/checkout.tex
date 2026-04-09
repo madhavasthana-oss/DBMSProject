@@ -1,0 +1,16 @@
+\begin{lstlisting}[caption={checkout: atomic order placement with rollback}]
+CREATE OR REPLACE PROCEDURE checkout(
+    p_cust_id        IN  NUMBER,
+    p_payment_method IN  VARCHAR2,
+    p_order_id       OUT NUMBER
+) AS BEGIN
+    -- 1. Validate cart not empty
+    -- 2. Check all items in stock
+    -- 3. INSERT into ORDERS
+    -- 4. INSERT into ORDER_ITEMS  (triggers fire here)
+    -- 5. INSERT into PAYMENT
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN ROLLBACK; RAISE;
+END checkout;
+\end{lstlisting}

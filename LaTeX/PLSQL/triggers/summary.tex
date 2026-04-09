@@ -1,0 +1,15 @@
+\begin{table}[H]
+\centering
+\caption{Summary of triggers}
+\begin{tabular}{lll}
+\toprule
+\textbf{Trigger} & \textbf{Event} & \textbf{Action} \\
+\midrule
+\texttt{trg\_decrement\_stock}    & AFTER INSERT on ORDER\_ITEMS & Decrement INVENTORY \\
+\texttt{trg\_checkout\_cart}      & AFTER INSERT on ORDERS       & Mark cart CHECKED\_OUT \\
+\texttt{trg\_cart\_updated}       & AFTER DML on CART\_ITEMS     & Update cart timestamp \\
+\texttt{trg\_prevent\_neg\_stock} & BEFORE UPDATE on INVENTORY   & Reject negative qty \\
+\texttt{trg\_lock\_checked\_out}  & BEFORE DML on CART\_ITEMS    & Reject non-ACTIVE cart \\
+\bottomrule
+\end{tabular}
+\end{table}

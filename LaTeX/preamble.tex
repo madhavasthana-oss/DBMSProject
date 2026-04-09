@@ -1,0 +1,65 @@
+\usepackage[margin=1in]{geometry}
+\setlength{\headheight}{13.6pt}
+\addtolength{\topmargin}{-1.6pt}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+% ── Code listing style ───────────────────────────────────────
+\definecolor{codebg}{RGB}{248,248,248}
+\definecolor{codeframe}{RGB}{200,200,200}
+\definecolor{sqlkw}{RGB}{0,0,180}
+\definecolor{sqlstr}{RGB}{163,21,21}
+\definecolor{sqlcmt}{RGB}{100,100,100}
+
+\lstdefinestyle{sqlstyle}{
+    backgroundcolor=\color{codebg},
+    frame=single, rulecolor=\color{codeframe},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{sqlkw}\bfseries,
+    stringstyle=\color{sqlstr},
+    commentstyle=\color{sqlcmt}\itshape,
+    breaklines=true, breakatwhitespace=true,
+    showstringspaces=false,
+    morekeywords={CREATE,TABLE,PRIMARY,FOREIGN,KEY,REFERENCES,
+                  INSERT,INTO,VALUES,SELECT,FROM,WHERE,JOIN,
+                  GROUP,BY,ORDER,HAVING,NOT,NULL,DEFAULT,
+                  PROCEDURE,FUNCTION,TRIGGER,BEGIN,END,
+                  COMMIT,ROLLBACK,DECLARE,IF,THEN,ELSE,
+                  SEQUENCE,CONSTRAINT,CHECK,UNIQUE,INDEX,
+                  CURSOR,LOOP,FOR,WHEN,EXCEPTION,RAISE,
+                  IN,OUT,NUMBER,VARCHAR2,DATE,RETURN,
+                  AFTER,BEFORE,EACH,ROW,ON,NEXTVAL,AS,OR}
+}
+\lstset{style=sqlstyle}
+
+% ── Page header ──────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small Shopping Cart Management System}
+\rhead{\small CSE-D | MIT Manipal}
+\cfoot{\thepage}
+
+% ── Title ────────────────────────────────────────────────────
+\title{
+    \vspace{-1cm}
+    {\large Manipal Institute of Technology, Manipal} \\
+    {\large Department of Computer Science and Engineering} \\[0.5cm]
+    \rule{\linewidth}{0.5pt} \\[0.4cm]
+    {\LARGE \textbf{Mini Project — Phase II}} \\[0.2cm]
+    {\Large Implementing an Online Shopping Cart System} \\[0.2cm]
+    \rule{\linewidth}{0.5pt}
+}
+\author{
+    Udit Asthana \\ 240905310 \\ CSE-D
+}
+\date{February -- April 2026}

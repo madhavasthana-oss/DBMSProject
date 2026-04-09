@@ -1,0 +1,7 @@
+\begin{lstlisting}[caption={Q3: Total stock per book across all warehouses}]
+SELECT b.title, SUM(i.quantity) AS total_stock
+FROM   INVENTORY i
+JOIN   BOOK b ON b.isbn = i.isbn
+GROUP  BY b.title
+ORDER  BY total_stock DESC;
+\end{lstlisting}

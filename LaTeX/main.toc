@@ -1,0 +1,32 @@
+\contentsline {section}{\numberline {1}Abstract}{3}{section.1}%
+\contentsline {section}{\numberline {2}Problem Statement}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Background}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Data Requirements}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Functional Requirements}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}E-R Diagram and Schema Extension}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Original E-R Schema (Exercise 6.21)}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Extensions Made}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Relational Schema and Normalisation}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Relational Tables}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Normalisation}{6}{subsection.4.2}%
+\contentsline {section}{\numberline {5}DDL — Table Definitions and Constraints}{6}{section.5}%
+\contentsline {section}{\numberline {6}SQL Queries}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Basic Queries}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Complex Queries}{8}{subsection.6.2}%
+\contentsline {section}{\numberline {7}PL/SQL Procedures, Functions, and Triggers}{9}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Functions}{9}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Procedures}{9}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Triggers}{10}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Java DB Connectivity}{10}{section.8}%
+\contentsline {section}{\numberline {9}Transaction Management}{11}{section.9}%
+\contentsline {section}{\numberline {10}Sample Data}{12}{section.10}%
+\contentsline {section}{\numberline {11}UI Design}{12}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Books Listing}{13}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}View Cart}{13}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Add to Cart}{14}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Checkout}{15}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Check Stock}{16}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Transaction Demo}{17}{subsection.11.6}%
+\contentsline {section}{\numberline {12}Testing Scenarios}{17}{section.12}%
+\contentsline {section}{\numberline {13}Conclusion}{17}{section.13}%
+\contentsline {section}{References}{18}{section.13}%
