@@ -1,5 +1,5 @@
 run(){
-echo    "<<<    running . . .    >>>>"
+echo    "<<<    running . . .     >>>"
 mvn exec:java
 }
 
