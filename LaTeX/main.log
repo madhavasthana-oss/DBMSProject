@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2026.3.24)  17 APR 2026 09:27
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2026.3.24)  17 APR 2026 11:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -405,12 +405,52 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 )
 (C:\Users\Asus\Desktop\MiKTeX\tex/latex/parskip\parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+)
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/pdfpages\pdfpages.sty
+Package: pdfpages 2026/03/30 v0.6h Insert pages of external PDF documents (AM)
+
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/tools\calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count326
+\calc@Bcount=\count327
+\calc@Adimen=\dimen197
+\calc@Bdimen=\dimen198
+\calc@Askip=\skip77
+\calc@Bskip=\skip78
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count328
+\calc@Cskip=\skip79
+)
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/eso-pic\eso-pic.sty
+Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
+\ESO@tempdima=\dimen199
+\ESO@tempdimb=\dimen256
+)
+\AM@pagewidth=\dimen257
+\AM@pageheight=\dimen258
+\AM@fboxrule=\dimen259
+
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/pdfpages\ppxetex.def
+File: ppxetex.def 2026/03/30 v0.6h Pdfpages driver for XeTeX (AM)
+)
+\pdfpages@includegraphics@status=\count329
+\AM@pagebox=\box68
+\AM@global@opts=\toks31
+\AM@pagecnt=\count330
+\AM@toc@title=\toks32
+\AM@lof@heading=\toks33
+\c@AM@survey=\count331
+\AM@templatesizebox=\box69
 ))
 (C:\Users\Asus\Desktop\MiKTeX\tex/latex/l3backend\l3backend-xetex.def
 File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
-\g__graphics_track_int=\count326
-\g__pdfannot_backend_int=\count327
-\g__pdfannot_backend_link_int=\count328
+\g__graphics_track_int=\count332
+\g__pdfannot_backend_int=\count333
+\g__pdfannot_backend_link_int=\count334
 )
 (main.aux)
 \openout1 = `main.aux'.
@@ -470,25 +510,76 @@ LaTeX Font Info:    ... okay on input line 3.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count329
+\c@lstlisting=\count335
 Package hyperref Info: Link coloring OFF on input line 3.
 (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
- (main.toc
 
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/pdflscape\pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/pdflscape\pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PD
+F (HO)
+
+(C:\Users\Asus\Desktop\MiKTeX\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
+
+))
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf>
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 1>
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 1>
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 1>
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 1>
+
+
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 1>
 [1
 
-])
+
+]
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 2>
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 2>
+
+
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 2>
+[2
+
+]
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 3>
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 3>
+
+
+File: DBS Lab-Mini Project-Report Template.pdf Graphic file (type pdf)
+<use DBS Lab-Mini Project-Report Template.pdf, page 3>
+[3
+
+] (main.toc
+
+[4])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
 
 
-[2] (problem_statement.tex
+[5] (problem_statement.tex
 
-[3]
+[6]
 Overfull \hbox (2.50684pt too wide) in paragraph at lines 12--14
 []\TU/lmr/bx/n/12 Cart\TU/lmr/m/n/12 : links a customer to a set of items; trac
 ks status (ACTIVE, CHECKED_OUT,
@@ -496,9 +587,9 @@ ks status (ACTIVE, CHECKED_OUT,
 
 ) (methodology.tex
 
-[4])
+[7])
 
-[5]
+[8]
 File: image.png Graphic file (type bmp)
 <image.png>
  (SchemaAndNormalization/tables.tex
@@ -508,8 +599,8 @@ Overfull \hbox (0.9873pt too wide) detected at line 13
 
 
 
-[6])
-Overfull \hbox (44.55624pt too wide) in paragraph at lines 121--124
+[9])
+Overfull \hbox (44.55624pt too wide) in paragraph at lines 122--125
 []\TU/lmr/bx/n/12 2NF\TU/lmr/m/n/12 : No partial dependencies exist. In \TU/lmt
 t/m/n/12 ORDER_ITEMS \TU/lmr/m/n/12 the non-key attribute \TU/lmtt/m/n/12 price
 _at_order
@@ -522,16 +613,16 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2.
 
 
-[7]) (SQLQueries/Basic/allBooksWIthAuthor.tex)
+[10]) (SQLQueries/Basic/allBooksWIthAuthor.tex)
 (SQLQueries/Basic/activeCarts.tex
 
-[8]) (SQLQueries/Basic/totalStock.tex) (SQLQueries/Complex/availableStock.tex)
+[11]) (SQLQueries/Basic/totalStock.tex) (SQLQueries/Complex/availableStock.tex)
 (SQLQueries/Complex/cartSummary.tex)
 (SQLQueries/Complex/revenuePerPublisher.tex
 
-[9]) (PLSQL/procedures/addToCart.tex) (PLSQL/procedures/checkout.tex
+[12]) (PLSQL/procedures/addToCart.tex) (PLSQL/procedures/checkout.tex
 
-[10]) (PLSQL/triggers/summary.tex
+[13]) (PLSQL/triggers/summary.tex
 Overfull \hbox (63.10417pt too wide) in paragraph at lines 4--15
  [][] 
  []
@@ -541,15 +632,15 @@ Overfull \hbox (63.10417pt too wide) in paragraph at lines 4--15
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 
-[11]
+[14]
 
-[12]
+[15]
 Missing character: There is no ● in font [lmmono12-regular]:!
 File: ss_books.png Graphic file (type bmp)
 <ss_books.png>
 
 
-[13]
+[16]
 File: ss_viewCart.png Graphic file (type bmp)
 <ss_viewCart.png>
 
@@ -558,44 +649,44 @@ Missing character: There is no ₹ in font [lmroman12-regular]:mapping=tex-text;
 File: ss_addToCart.png Graphic file (type bmp)
 <ss_addToCart.png>
 
-Underfull \hbox (badness 6725) in paragraph at lines 316--316
+Underfull \hbox (badness 6725) in paragraph at lines 317--317
 []\TU/lmr/m/n/12 Figure 4: []Add to Cart tab — Customer #1 adds 2 copies of ISB
 N
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 316--316
+Underfull \hbox (badness 6300) in paragraph at lines 317--317
 \TU/lmtt/m/n/12 978-0-06-244558-9\TU/lmr/m/n/12 . Calls PL/SQL procedure \TU/lm
 tt/m/n/12 add_to_cart(cust_id, isbn,
  []
 
 
 
-[14]
+[17]
 File: ss_transaction.png Graphic file (type bmp)
 <ss_transaction.png>
 
 
-[15]
+[18]
 File: ss_stock.png Graphic file (type bmp)
 <ss_stock.png>
 
 
-[16]
+[19]
 File: ss_transactionDemo.png Graphic file (type bmp)
 <ss_transactionDemo.png>
 
 
-[17]
-Overfull \hbox (34.82016pt too wide) in paragraph at lines 361--375
+[20]
+Overfull \hbox (34.82016pt too wide) in paragraph at lines 362--376
  [][] 
  []
 
 
 
-[18]
+[21]
 
-[19] (main.aux)
+[22] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -604,12 +695,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 5EBD880B6C4B61F61EF7F622ACF41BF4;5771.
  ) 
 Here is how much of TeX's memory you used:
- 12316 strings out of 402989
- 185308 string characters out of 5451874
- 946057 words of memory out of 5000000
- 40833 multiletter control sequences out of 15000+600000
+ 13235 strings out of 402989
+ 201249 string characters out of 5451874
+ 962600 words of memory out of 5000000
+ 41726 multiletter control sequences out of 15000+600000
  632999 words of font info for 76 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 77i,13n,82p,1233b,1823s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 77i,17n,82p,1233b,1825s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (19 pages).
+Output written on main.pdf (22 pages).

@@ -1,41 +1,41 @@
-\contentsline {section}{\numberline {1}Abstract}{3}{section.1}%
-\contentsline {section}{\numberline {2}Introduction}{3}{section.2}%
-\contentsline {section}{\numberline {3}Problem Statement}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Background}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Data Requirements}{3}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Functional Requirements}{4}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Methodology}{4}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Development Approach}{4}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Tools and Technologies}{5}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Database Design Process}{5}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Implementation Sequence}{5}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Transaction Strategy}{5}{subsection.4.5}%
-\contentsline {section}{\numberline {5}E-R Diagram and Schema Extension}{5}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Original E-R Schema (Exercise 6.21)}{5}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Extensions Made}{6}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Relational Schema and Normalisation}{7}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Relational Tables}{7}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Normalisation}{7}{subsection.6.2}%
-\contentsline {section}{\numberline {7}DDL — Table Definitions and Constraints}{7}{section.7}%
-\contentsline {section}{\numberline {8}SQL Queries}{8}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Basic Queries}{8}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Complex Queries}{9}{subsection.8.2}%
-\contentsline {section}{\numberline {9}PL/SQL Procedures, Functions, and Triggers}{10}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Functions}{10}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Procedures}{10}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Triggers}{11}{subsection.9.3}%
-\contentsline {section}{\numberline {10}Java DB Connectivity}{11}{section.10}%
-\contentsline {section}{\numberline {11}Transaction Management}{12}{section.11}%
-\contentsline {section}{\numberline {12}Sample Data}{13}{section.12}%
-\contentsline {section}{\numberline {13}UI Design}{13}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Books Listing}{14}{subsection.13.1}%
-\contentsline {subsection}{\numberline {13.2}View Cart}{14}{subsection.13.2}%
-\contentsline {subsection}{\numberline {13.3}Add to Cart}{15}{subsection.13.3}%
-\contentsline {subsection}{\numberline {13.4}Checkout}{16}{subsection.13.4}%
-\contentsline {subsection}{\numberline {13.5}Check Stock}{17}{subsection.13.5}%
-\contentsline {subsection}{\numberline {13.6}Transaction Demo}{18}{subsection.13.6}%
-\contentsline {section}{\numberline {14}Testing Scenarios}{18}{section.14}%
-\contentsline {section}{\numberline {15}Conclusion}{18}{section.15}%
-\contentsline {subsection}{\numberline {15.1}Limitations}{19}{subsection.15.1}%
-\contentsline {subsection}{\numberline {15.2}Future Work}{19}{subsection.15.2}%
-\contentsline {section}{References}{19}{subsection.15.2}%
+\contentsline {section}{\numberline {1}Abstract}{6}{section.1}%
+\contentsline {section}{\numberline {2}Introduction}{6}{section.2}%
+\contentsline {section}{\numberline {3}Problem Statement}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Background}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Data Requirements}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Functional Requirements}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Methodology}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Development Approach}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Tools and Technologies}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Database Design Process}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Implementation Sequence}{8}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Transaction Strategy}{8}{subsection.4.5}%
+\contentsline {section}{\numberline {5}E-R Diagram and Schema Extension}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Original E-R Schema (Exercise 6.21)}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Extensions Made}{9}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Relational Schema and Normalisation}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Relational Tables}{10}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Normalisation}{10}{subsection.6.2}%
+\contentsline {section}{\numberline {7}DDL — Table Definitions and Constraints}{10}{section.7}%
+\contentsline {section}{\numberline {8}SQL Queries}{11}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Basic Queries}{11}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Complex Queries}{12}{subsection.8.2}%
+\contentsline {section}{\numberline {9}PL/SQL Procedures, Functions, and Triggers}{13}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Functions}{13}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Procedures}{13}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Triggers}{14}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Java DB Connectivity}{14}{section.10}%
+\contentsline {section}{\numberline {11}Transaction Management}{15}{section.11}%
+\contentsline {section}{\numberline {12}Sample Data}{16}{section.12}%
+\contentsline {section}{\numberline {13}UI Design}{16}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Books Listing}{17}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}View Cart}{17}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Add to Cart}{18}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}Checkout}{19}{subsection.13.4}%
+\contentsline {subsection}{\numberline {13.5}Check Stock}{20}{subsection.13.5}%
+\contentsline {subsection}{\numberline {13.6}Transaction Demo}{21}{subsection.13.6}%
+\contentsline {section}{\numberline {14}Testing Scenarios}{21}{section.14}%
+\contentsline {section}{\numberline {15}Conclusion}{21}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Limitations}{22}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Future Work}{22}{subsection.15.2}%
+\contentsline {section}{References}{22}{subsection.15.2}%
