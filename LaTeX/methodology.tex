@@ -1,0 +1,43 @@
+\subsection{Development Approach}
+The project followed an incremental design process: the database schema was
+designed and normalised first, followed by DDL implementation, then PL/SQL
+logic, and finally the Java JDBC frontend. Each layer was tested independently
+before integration.
+
+\subsection{Tools and Technologies}
+\begin{itemize}
+    \item \textbf{Database:} Oracle 21c XE (XEPDB1) for schema hosting,
+          constraint enforcement, and PL/SQL execution.
+    \item \textbf{Connectivity:} Oracle JDBC Type-4 thin driver
+          (\texttt{ojdbc11.jar}) for Java--database communication.
+    \item \textbf{Frontend:} JavaFX for the graphical user interface,
+          providing a dark-themed tabbed dashboard.
+    \item \textbf{Build Tool:} Apache Maven for dependency management
+          and compilation.
+    \item \textbf{IDE:} IntelliJ IDEA for development and debugging.
+\end{itemize}
+
+\subsection{Database Design Process}
+The original Exercise 6.21 E-R schema was analysed to identify entities
+relevant to a shopping cart context. Extensions were then designed to cover
+the full purchase lifecycle, including Cart, Inventory, Orders, Order Items,
+and Payment entities. Each table was verified against 3NF before DDL was
+written.
+
+\subsection{Implementation Sequence}
+\begin{enumerate}
+    \item Schema design and normalisation.
+    \item DDL: table definitions, constraints, and sequences.
+    \item Sample data insertion across all 11 tables.
+    \item PL/SQL: functions, procedures, and triggers.
+    \item JDBC layer: connection setup, query execution, and procedure calls.
+    \item JavaFX UI: one tab per core operation, with a live console log.
+    \item Testing against all scenarios in Table~5.
+\end{enumerate}
+
+\subsection{Transaction Strategy}
+All multi-step write operations --- particularly checkout --- use manual
+transaction control (\texttt{setAutoCommit(false)}) with explicit
+\texttt{COMMIT} on success and \texttt{ROLLBACK} in the exception handler,
+ensuring atomicity across order placement, inventory decrement, and payment
+recording.

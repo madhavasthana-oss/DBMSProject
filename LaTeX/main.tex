@@ -6,9 +6,8 @@
 \tableofcontents
 \newpage
 
-% ════════════════════════════════════════════════════════════
+
 \section{Abstract}
-% ════════════════════════════════════════════════════════════
 
 This project presents the design and implementation of a web-based Shopping Cart
 Management System intended to demonstrate practical applications of Database Management
@@ -26,6 +25,24 @@ constraints, sequences, triggers, and stored procedures. A Java JDBC layer demon
 database connectivity and calls to PL/SQL procedures for cart operations, stock
 verification, and atomic order placement.
 
+\section{Introduction}
+
+The rapid growth of e-commerce has made efficient shopping cart systems a
+cornerstone of modern retail infrastructure. Managing product catalogues,
+customer sessions, inventory, and atomic transactions demands a well-designed
+relational database backend capable of enforcing integrity at every layer.
+
+This project implements a Shopping Cart Management System for an online
+bookstore, built atop Oracle 21c XE using JDBC and JavaFX. The system extends
+the bookstore Entity--Relationship schema of Exercise 6.21 (Silberschatz,
+\textit{Database System Concepts}, 7th ed.) to support a complete purchase
+lifecycle: browsing, cart management, stock verification, and atomic checkout.
+
+The primary objective is not to replicate a commercial platform but to
+demonstrate rigorous application of DBMS principles --- normalisation,
+constraint enforcement, stored procedures, triggers, and transaction
+management --- within a working, interactive system.
+
 \section{Problem Statement}
 \subsection{Background}
 Design and implement a shopping cart system that lets shoppers collect items into a
@@ -34,6 +51,10 @@ bookstore E-R schema of \textbf{Exercise 6.21, Chapter 6} (Korth, 6th Edition).
 Stock availability must be verified at checkout, and out-of-stock situations must be
 handled gracefully.
 \input{problem_statement.tex}
+
+\section{Methodology}
+\input{methodology.tex}
+
 \section{E-R Diagram and Schema Extension}
 
 \subsection{Original E-R Schema (Exercise 6.21)}
@@ -162,9 +183,9 @@ END get_total_stock;
 
 \input{PLSQL/triggers/triggerDecrement.tex}
 
-% ════════════════════════════════════════════════════════════
+
 \section{Java DB Connectivity}
-% ════════════════════════════════════════════════════════════
+
 
 The file \texttt{ShoppingCartDB.java} demonstrates Oracle JDBC connectivity
 using the Type-4 thin driver (\texttt{ojdbc11.jar}).
@@ -196,9 +217,9 @@ Key JDBC patterns demonstrated:
     \item Manual \texttt{con.setAutoCommit(false)} with explicit \texttt{COMMIT}/\texttt{ROLLBACK}.
 \end{itemize}
 
-% ════════════════════════════════════════════════════════════
+
 \section{Transaction Management}
-% ════════════════════════════════════════════════════════════
+
 
 The checkout operation is the most critical transaction in the system. It follows an
 all-or-nothing strategy:
@@ -218,9 +239,9 @@ all-or-nothing strategy:
 This guarantees that partial orders (e.g., payment recorded but inventory not
 decremented) can never occur.
 
-% ════════════════════════════════════════════════════════════
+
 \section{Sample Data}
-% ════════════════════════════════════════════════════════════
+
 
 \begin{table}[H]
 \centering
@@ -253,9 +274,9 @@ WH-DEL & Okhla Phase II, New Delhi & 3 titles \\
 \end{tabular}
 \end{table}
 
-% ════════════════════════════════════════════════════════════
+
 \section{UI Design}
-% ════════════════════════════════════════════════════════════
+
 
 The application is built using \textbf{JavaFX} with a dark-themed dashboard
 interface. It connects to Oracle 21c XE via JDBC and exposes all six core
@@ -330,9 +351,9 @@ active Oracle connection (\texttt{● XEPDB1}).
     \label{fig:ui-transaction}
 \end{figure}
 
-% ════════════════════════════════════════════════════════════
+
 \section{Testing Scenarios}
-% ════════════════════════════════════════════════════════════
+
 
 \begin{table}[H]
 \centering
@@ -353,9 +374,8 @@ Duplicate email registration & Same email twice       & ORA-00001 (unique constr
 \end{tabular}
 \end{table}
 
-% ════════════════════════════════════════════════════════════
+
 \section{Conclusion}
-% ════════════════════════════════════════════════════════════
 
 This project successfully demonstrates the design and implementation of a Shopping
 Cart Management System grounded in rigorous DBMS principles. Starting from the
@@ -373,9 +393,31 @@ Key outcomes achieved:
           \texttt{CallableStatement}, and manual transaction control.
 \end{itemize}
 
-% ════════════════════════════════════════════════════════════
+\subsection{Limitations}
+\begin{itemize}
+    \item The system supports a single active cart per customer; concurrent
+          sessions are not handled.
+    \item Authentication is not implemented in the UI; customer ID is entered
+          manually.
+    \item The JavaFX frontend is desktop-only and not suitable for web
+          or mobile deployment.
+    \item Inventory is decremented by trigger at order insertion but is not
+          reserved during cart session, allowing race conditions under
+          concurrent load.
+\end{itemize}
+
+\subsection{Future Work}
+\begin{itemize}
+    \item Implement session-based authentication with hashed password
+          verification.
+    \item Add optimistic locking or inventory reservation during cart
+          checkout to handle concurrent users.
+    \item Migrate the frontend to a REST API backend with a web interface.
+    \item Extend reporting queries into a live analytics dashboard within
+          the UI.
+\end{itemize}
 \section*{References}
-% ════════════════════════════════════════════════════════════
+
 \addcontentsline{toc}{section}{References}
 
 \begin{enumerate}

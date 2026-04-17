@@ -1,13 +1,10 @@
-// ============================================================
-//  ShoppingCartDB.java
-//  JavaFX + JDBC — Shopping Cart Management System
-//  Oracle 21c XE | XEPDB1
-//  Author: Udit Asthana (240905310), CSE-D
-//
-//  Compile & Run via Maven:
-//    mvn compile
-//    mvn exec:java
-// ============================================================
+/* ShoppingCartDB.java
+   JavaFX + JDBC — Shopping Cart Management System
+   Oracle 21c XE | XEPDB1
+   Author: Udit Asthana (240905310), CSE-D
+   Compile & Run via Maven:
+   mvn compile
+   mvn exec:java */
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -69,16 +66,16 @@ public class ShoppingCartDB extends Application {
     private TextArea logArea;
     private ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    // ════════════════════════════════════════════════════════
+    
     //  DB CONNECTION
-    // ════════════════════════════════════════════════════════
+    
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  JAVAFX ENTRY POINT
-    // ════════════════════════════════════════════════════════
+    
     @Override
     public void start(Stage stage) {
         stage.setTitle("Shopping Cart Management System — Udit Asthana");
@@ -113,9 +110,9 @@ public class ShoppingCartDB extends Application {
         testConnection();
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  HEADER
-    // ════════════════════════════════════════════════════════
+    
     private HBox buildHeader() {
         HBox header = new HBox();
         header.setAlignment(Pos.CENTER_LEFT);
@@ -149,9 +146,9 @@ public class ShoppingCartDB extends Application {
         return header;
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  SIDEBAR
-    // ════════════════════════════════════════════════════════
+    
     private VBox buildSidebar() {
         VBox sidebar = new VBox(4);
         sidebar.setPrefWidth(200);
@@ -192,9 +189,9 @@ public class ShoppingCartDB extends Application {
         return sidebar;
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB PANE (all 6 operations)
-    // ════════════════════════════════════════════════════════
+    
     private TabPane buildTabPane() {
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
@@ -296,9 +293,9 @@ public class ShoppingCartDB extends Application {
         return tab;
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB 1 — LIST BOOKS
-    // ════════════════════════════════════════════════════════
+    
     public static class BookRow {
         private final String isbn, title, price, genre, author;
         public BookRow(String isbn, String title, String price, String genre, String author) {
@@ -342,22 +339,42 @@ public class ShoppingCartDB extends Application {
             });
         });
 
+        Button copyIsbnBtn = accentButton("📋  Copy ISBN", ACCENT2);
+        copyIsbnBtn.setDisable(true);
+        copyIsbnBtn.setOnAction(e -> {
+            BookRow selected = table.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                javafx.scene.input.Clipboard clipboard = javafx.scene.input.Clipboard.getSystemClipboard();
+                javafx.scene.input.ClipboardContent content2 = new javafx.scene.input.ClipboardContent();
+                content2.putString(selected.getIsbn());
+                clipboard.setContent(content2);
+                log("✔  ISBN copied: " + selected.getIsbn());
+            }
+        });
+
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
+            copyIsbnBtn.setDisable(newVal == null)
+        );
+
+        HBox toolbar = new HBox(10, loadBtn, copyIsbnBtn);
+        toolbar.setAlignment(Pos.CENTER_LEFT);
+
         VBox content = new VBox(14);
         content.setPadding(new Insets(24));
         content.setStyle("-fx-background-color: " + BG_DARK + ";");
         content.getChildren().addAll(
             sectionTitle("📚  All Books"),
             dimLabel("Fetches all books joined with author table."),
-            loadBtn,
+            toolbar,
             table
         );
         VBox.setVgrow(table, Priority.ALWAYS);
         return styledTab("📚 Books", content);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB 2 — VIEW CART
-    // ════════════════════════════════════════════════════════
+    
     public static class CartRow {
         private final String title, quantity, lineTotal;
         public CartRow(String title, String quantity, String lineTotal) {
@@ -430,9 +447,9 @@ public class ShoppingCartDB extends Application {
         return styledTab("🛒 Cart", content);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB 3 — ADD TO CART
-    // ════════════════════════════════════════════════════════
+    
     private Tab buildAddToCartTab() {
         TextField custIdField  = styledField("Customer ID (e.g. 3)");
         TextField isbnField    = styledField("ISBN (e.g. 978-0-06-231609-7)");
@@ -503,9 +520,9 @@ public class ShoppingCartDB extends Application {
         return styledTab("➕ Add", content);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB 4 — CHECKOUT
-    // ════════════════════════════════════════════════════════
+    
     private Tab buildCheckoutTab() {
         TextField custIdField  = styledField("Customer ID (e.g. 3)");
         ComboBox<String> paymentBox = new ComboBox<>();
@@ -583,9 +600,9 @@ public class ShoppingCartDB extends Application {
         return styledTab("💳 Checkout", content);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB 5 — CHECK STOCK
-    // ════════════════════════════════════════════════════════
+    
     private Tab buildCheckStockTab() {
         TextField isbnField = styledField("ISBN (e.g. 978-0-07-352332-3)");
         isbnField.setMaxWidth(340);
@@ -639,9 +656,9 @@ public class ShoppingCartDB extends Application {
         return styledTab("📦 Stock", content);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  TAB 6 — TRANSACTION DEMO
-    // ════════════════════════════════════════════════════════
+    
     private Tab buildTransactionTab() {
         TextField custIdField = styledField("Customer ID (e.g. 1)");
         custIdField.setMaxWidth(200);
@@ -735,9 +752,9 @@ public class ShoppingCartDB extends Application {
         return styledTab("🔄 Transaction", content);
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  LOG PANEL
-    // ════════════════════════════════════════════════════════
+    
     private VBox buildLogPanel() {
         logArea = new TextArea();
         logArea.setEditable(false);
@@ -770,9 +787,9 @@ public class ShoppingCartDB extends Application {
         return panel;
     }
 
-    // ════════════════════════════════════════════════════════
+    
     //  UTILITIES
-    // ════════════════════════════════════════════════════════
+    
     private void log(String msg) {
         Platform.runLater(() -> {
             logArea.appendText("› " + msg + "\n");
@@ -807,9 +824,7 @@ public class ShoppingCartDB extends Application {
         executor.shutdownNow();
     }
 
-    // ════════════════════════════════════════════════════════
     //  MAIN
-    // ════════════════════════════════════════════════════════
     public static void main(String[] args) {
         launch(args);
     }
